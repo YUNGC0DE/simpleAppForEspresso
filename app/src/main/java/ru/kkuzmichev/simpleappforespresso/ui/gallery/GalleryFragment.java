@@ -7,17 +7,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
-
 import ru.kkuzmichev.simpleappforespresso.R;
+import ru.kkuzmichev.simpleappforespresso.Resources;
 import ru.kkuzmichev.simpleappforespresso.databinding.FragmentGalleryBinding;
 
 public class GalleryFragment extends Fragment {
@@ -59,6 +59,7 @@ public class GalleryFragment extends Fragment {
 
 
     private void fakeLoadData() {
+        Resources.increment();
         progressBar.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
         Handler handler = new Handler();
@@ -68,6 +69,7 @@ public class GalleryFragment extends Fragment {
                 {
                     progressBar.setVisibility(View.INVISIBLE);
                     recyclerView.setVisibility(View.VISIBLE);
+                    Resources.decrement();
                 }
             }
         }, 1500);
